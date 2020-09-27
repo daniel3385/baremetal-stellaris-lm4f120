@@ -199,8 +199,8 @@ void reset_handler(void)
     // Copy initialized data from Flash to Ram
     uint32_t size = &_edata - &_sdata;
 
-    uint8_t *pDst = (uint8_t *)&_sdata;
-    uint8_t *pSrc = (uint8_t *)&_etext;
+    uint32_t *pDst = (uint32_t *)&_sdata;
+    uint32_t *pSrc = (uint32_t *)&_etext;
 
     for (uint32_t i = 0; i < size; i++)
     {
@@ -209,7 +209,7 @@ void reset_handler(void)
     
     // Clear the zero segment
     size = &_ebss - &_sbss;
-    pDst = (uint8_t *)&_sbss;
+    pDst = (uint32_t *)&_sbss;
     
     for (uint32_t i = 0; i < size; i++) 
     {
